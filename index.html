@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Backtracking</title>
 </head>
 <body>
-    <h1>Backtracking</h1>
-    <p>555</p><br>
-    <p>Backtracking is a form of recursion.</p><br>
-    <p>The usual scenario is that you are faced with a number of options, and you must choose one of these. After you make your choice you will get a new set of options; just what set of options you get depends on what choice you made. This procedure is repeated over and over until you reach a final state. If you made a good sequence of choices, your final state is a goal state; if you didn't, it isn't.</p><br>
-    <p>Conceptually, you start at the root of a tree; the tree probably has some good leaves and some bad leaves, though it may be that the leaves are all good or all bad. You want to get to a good leaf. At each node, beginning with the root, you choose one of its children to move to, and you keep this up until you get to a leaf.</p><br>
-    <p>Suppose you get to a bad leaf. You can <i>backtrack</i> to continue the search for a good leaf by revoking your <i> your most recent </i> choice, and trying out the next option in that set of options. If you run out of options, revoke the choice that got you here, and try another choice at that node. If you end up at the root with no options left, there are no good leaves to be found.</p><br>
-    <p>This needs an example.</p><br>
-    <img src="https://akarsh-gupta007.github.io/backtracking/treesearch.gif" alt="404 Error">
+    <font size="6"> <b>Backtracking</b>  </font><br>
+    <font>Copyright ©2002 by David Matuszek</font>
+    <p>Backtracking is a form of recursion.</p>
+    <p>The usual scenario is that you are faced with a number of options, and you must choose one of these. After you make your choice you will get a new set of options; just what set of options you get depends on what choice you made. This procedure is repeated over and over until you reach a final state. If you made a good sequence of choices, your final state is a  <i>goal state</i>; if you didn't, it isn't.</p>
+    <p>Conceptually, you start at the root of a tree; the tree probably has some good leaves and some bad leaves, though it may be that the leaves are all good or all bad. You want to get to a good leaf. At each node, beginning with the root, you choose one of its children to move to, and you keep this up until you get to a leaf.</p>
+    <p>Suppose you get to a bad leaf. You can <i>backtrack</i> to continue the search for a good leaf by revoking your <i> your most recent </i> choice, and trying out the next option in that set of options. If you run out of options, revoke the choice that got you here, and try another choice at that node. If you end up at the root with no options left, there are no good leaves to be found.</p>
+    <p>This needs an example.</p>
+    <p style="text-align: center ;">
+    <img src="https://akarsh-gupta007.github.io/backtracking/treesearch.gif" alt="404 Error"></p>
     <ol type="1">
         <li>Starting at Root, your options are A and B</li>
         <li>You choose A. At A, your options are C and D. You choose C.</li>
@@ -24,7 +25,7 @@
         <li>At Root, you have already tried A. Try B</li>
         <li>At B, your options are E and F. Try E.</li>
         <li>E is good. Congratulations!</li>
-    </ol><br>
+    </ol>
     <p>In this example we drew a picture of a tree. The tree is an abstract model of the possible sequences of choices we could make. There is also a data structure called a tree, but usually we don't have a data structure to tell us what choices we have. (If we do have an actual tree data structure, backtracking on it is called <i>depth-first tree searching.</i> )</p>
     <h3>The backtracking algorithm.</h3>
     <p>Here is the algorithm (in pseudocode) for doing backtracking from a given node n:</p>
@@ -95,8 +96,6 @@
             }
             return false
         }
-        
-    >
        </font>    
     </pre>
     <p>Starting from the root, the only nodes that can be pushed onto the stack are the children of the node currently on the top of the stack, and these are only pushed on one child at a time; hence, the nodes on the stack at all times describe a valid path in the tree. Nodes are removed from the stack only when it is known that they have no goal nodes among their descendents. Therefore, if the root node gets removed (making the stack empty), there must have been no goal nodes at all, and no solution to the problem.</p>
@@ -137,7 +136,8 @@
      <p>For starters, let's do the simplest possible example of backtracking, which is searching an actual tree. We will also use the simplest kind of tree, a binary tree.</p>
      <p>For starters, let's do the simplest possible example of backtracking, which is searching an actual tree. We will also use the simplest kind of tree, a binary tree.</p>
      <p>A <b>binary tree</b> is a data structure composed of <b>node</b>. One node is designed as the <b>root node</b>. Each node can reference (point to) zero, one,or, teo other nides, which are called its <b>children</b>. the children are refered to as the <b>left child</b> and/or <b> right child</b>. All nodes are reachable (by one or more steps) from the root node, and there are no cycles. For our purposes, although this is not part of the definition of a binary tree, we will say that a node might or might not be a goal node, and will contain its name. The first example in this paper (which we repeat here) shows a binary tree.</p>
-     <img src="https://akarsh-gupta007.github.io/backtracking/treesearch.gif" alt="404 Error">
+     <p style="text-align: center ;">
+     <img src="https://akarsh-gupta007.github.io/backtracking/treesearch.gif" alt="404 Error"></p>
      <p>Here's a definition of the BinaryTree class:</p>
      <pre>
         <font size="4"  color="maroon">
@@ -219,10 +219,12 @@
      <p>One of the things that simplifies the above binary tree search is that, at each choice point, you can ignore all the previous choices. Previous choices don't give you any information about what you should do next; as far as you know, both the left and the right child are possible solutions. In many problems, however, you may be able to eliminate children immediately, without recursion.</p>
      <p>Consider, for example, the problem of four-coloring a map. It is a theorem of mathematics that any map on a plane, no matter how convoluted the countries are, can be colored with at most four colors, so that no two countries that share a border are the same color.</p>
      <p>To color a map, you choose a color for the first country, then a color for the second country, and so on, until all countries are colored. There are two ways to do this:</p>
-     <ol type="1">
-        <li>Try each of the four possible colors, and recur. When you run out of countries, check whether you are at a goal node.</li>
-        <li>Try only those colors that have not already been used for an adjacent country, and recur. If and when you run out of countries, you have successfully colored the map.</li>
-     </ol>
+     <ul type="disc">
+        <b>Method 1.</b>
+        Try each of the four possible colors, and recur. When you run out of countries, check whether you are at a goal node. <br>
+        <b>Method 2.</b>
+        Try only those colors that have not already been used for an adjacent country, and recur. If and when you run out of countries, you have successfully colored the map.
+     </ul>
      <p>Let's apply each of these two methods to the problem of coloring a checkerboard. This should be easily solvable; after all, a checkerboard only needs two colors.</p>
      <p>In both methods, the colors are represented by integers, from <font color="maroon" size="4">RED=1 </font> to <font color="maroon" size="4">BLUE=4 </font>. We define the following helper methods. The helper method code isn't displayed here because it's not important for understanding the method that does the backtracking.</p>
      <dl>
@@ -249,7 +251,7 @@
      <pre>
         <font size="4"  color="maroon">
             boolean explore1(int row, int column, int color) {
-                if (row >= NUM_ROWS) return mapIsOK();
+                if (row >= NUM_ROWS) <b>return mapIsOK()</b>;
                 map[row][column] = color;
                 for (int nextColor = RED; nextColor <= BLUE; nextColor++) {
                     int[] next = nextRowAndColumn(row, column);
@@ -263,8 +265,8 @@
      <pre>
         <font size="4"  color="maroon">
             boolean explore2(int row, int column, int color) {
-                if (row >= NUM_ROWS) return true;
-                if (okToColor(row, column, color)) {
+                if (row >= NUM_ROWS) <b>return true</b>;
+                <b>if (okToColor(row, column, color)) {</b>
                     map[row][column] = color;
                     for (int nextColor = RED; nextColor <= BLUE; nextColor++) {
                         int[] next = nextRowAndColumn(row, column);
@@ -394,7 +396,7 @@
      </font> 
      <p>In industry, actual programs often have multiple flags to control different aspects of debugging. Don't worry too much about making your code larger; modern compilers will notice that since the variable dibugging is final , and the controlled code will be discarded.</p>
      <p><strong>Trick #4: Create an Exception.</strong>If an Exception is thrown, you can get information about just where it happened by sending it the message printStackTrace<font color="maroon" size="4">printStackTrace(PrintStream)</font>. Since an Exception is an object like any other, you can create and throw your own Exceptions. However, Java programmers don't always realize that you can create an Exception <i>without</i> throwing it. For example, the following code</p>
-     <font color="maroon" size="3">new Exception("Checkpoint Charlie").printStackTrace(System.out);</font>  
+     <font color="maroon" size="4">new Exception("Checkpoint Charlie").printStackTrace(System.out);</font>  
      <p>will print out a message something like this, and the program will then continue normally. That is, the above code just acts like a print statement.</p>
      <font size="4"  color="maroon">
         <pre>
@@ -408,15 +410,15 @@
      </font> 
      <h3>Example: Cindy's Puzzle</h3>
      <p>I call the following puzzle "Cindy's puzzle" for historical reasons. You have some number n of black marbles and the same number of white marbles, and you have a playing board which consists simply of a line of <font size="4" color="maroon">2n+1</font> spaces to put the marbles in. Start with the black marbles all at one end (say, the left), the white marbles all at the other end, and a free space in between.</p>
-     <table border="1" align="center" bgcolor="silver">
+     <table border="1" align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
         <td width="40"> <img src="https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
         <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
         <td width="40"></td>
         <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
         <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
      </table>
-     <p>The goal is to reverse the positions of the marbles:</p>
-     <table border="1" align="center" bgcolor="silver">
+     <p>The goal is to reverse the positions of the marbles:</p><br>
+     <table border="1" align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
         <td width="40"> <img src="https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
         <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
         <td width="40"></td>
@@ -437,7 +439,7 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
                             <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
                             <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
@@ -447,7 +449,7 @@
                         </tr>
                 </table> 
             </td>
-        </tr>
+        </tr><br>
 
         <tr>
             <td>
@@ -455,7 +457,7 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
                             <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
                             <td width="40"></td>
@@ -473,13 +475,13 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
                             <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"> </td>
                             <td width="40"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>       
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>       
                         </tr>
                 </table> 
             </td>
@@ -491,13 +493,13 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
                             <td width="40"> </td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>       
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>       
                         </tr>
                 </table> 
             </td>
@@ -509,13 +511,13 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
                             <td width="40"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
                             <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"> </td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>       
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>       
                         </tr>
                 </table> 
             </td>
@@ -527,13 +529,13 @@
             </td>
     
             <td>
-                <table border="1"  align="center" bgcolor="silver">
+                <table border="1"  align="center" bgcolor="silver" cellspacing="0" cellpadding="5">
                         <tr>
                             <td width="40"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>
                             <td width="40"><img src="https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"> </td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif"></td>
-                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif"></td>      
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/black-ball.gif" alt="404"></td>
+                            <td width="40"><img src= "https://akarsh-gupta007.github.io/backtracking/white-ball.gif" alt="404"></td>      
                         </tr>
                 </table> 
             </td>
@@ -545,58 +547,66 @@
         </tr>
      </table>
      <p>Now to the program. The main program will initialize the board, and call a recursive backtracking routine to attempt to solve the puzzle. The backtracking routine will either succeed and print out a winning path, or it will fail, and the main program will have to print out the bad news.</p>
-     <p>The backtracking method is named solvableand returns a boolean. In solvable we shall need to check whether we are at a leaf, which in this case means a position from which no further moves are possible. This isn't so easy.</p>
+     <p>The backtracking method is named <font size="4" color="maroon">solvable</font> and returns a <font size="4" color="maroon">boolean</font>. In  <font size="4" color="maroon">solvable</font> we shall need to check whether we are at a leaf, which in this case means a position from which no further moves are possible. This isn't so easy.</p>
      <p>Each possible move will result in a new board position, and these new board positions are the children of the current board position. Hence to find the children of a node (that is, of a board position), we need only find the possible moves from that node. Remember that it is also highly desirable to find an ordering on these possible moves</p>
      <p>Here it is time to stop and take thought. To make progress, we must analyze the game to some extent. Probably a number of approaches would work, and what follows is based on the way I worked it out. If you were to program this puzzle, you might find a different but equally valid approach.</p>
      <p>First, notice that if a marble has a move, that move is unique: if it can move ahead one square, then it cannot jump. If it can jump, it cannot move ahead one square. This suggests that, to find the possible moves, we might assign numbers to the marbles, and check each marble in turn. When we have looked at all the marbles, we have looked at all the possible moves. This would require having a table to keep track of where each marble is, or else somehow "marking" each marble with its number and searching the board each time to find the marble we want. Neither alternative is very attractive.</p>
      <p>Next, notice that for a given board position, each marble occupies a unique space. Hence, instead of talking about moving a particular marble, we can talk about moving the marble in a particular space. If a move is possible from a given space, then that must be the only move possible from that space, because if the marble in that space has a move, it is unique. There is a slight complication because not every space contains a marble, but at least the spaces (unlike the marbles) stay in one place.</p>
-     <p>Now we have a simpler ordering of moves to use in our program. Just check, in order, the 2n+1 spaces of the board. For each space, either zero or one moves is possible. With this understanding, we can write a boolean method canMove(int[] board, int position)</p>
+     <p>Now we have a simpler ordering of moves to use in our program. Just check, in order, the  <font size="4" color="maroon">2n+1</font> spaces of the board. For each space, either zero or one moves is possible. With this understanding, we can write a boolean method  <font size="4" color="maroon">canMove(int[] board, int position)</font></p>
      <ul type="disc">
         <li>If the position is empty, no move is possible;</li>
         <li>If the position contains a black marble, the method checks for a move or jump to the right;</li>
         <li>If the position contains a white marble, the method checks for a move or jump to the left.</li>
 
      </ul>
-     <p>We write another method int[] makeMove(int[] oldBoard, int position) that will take a board and a position, make a move from that position, and return as its value a new board. (We could write this somewhat more efficiently by changing the old board, rather than creating a new one, but here we are more concerned with simplicity.) In technical jargon, makeMove is "applicative" rather than "mutative."</p>
+     <p>We write another method <font size="4" color="maroon">int[] makeMove(int[] oldBoard, int position)</font> that will take a board and a position, make a move from that position, and return as its value a new board. (We could write this somewhat more efficiently by changing the old board, rather than creating a new one, but here we are more concerned with simplicity.) In technical jargon, <font size="4" color="maroon">makeMove</font> is "applicative" rather than "mutative."</p>
      <p>With these methods, our central backtracking method can be written as follows:</p>
-     <pre>
-        boolean solvable(int[] board) {
-            if (puzzleSolved(board)) {
-                return true;
-            }
-            for (int position = 0; position < BOARD_SIZE; position++) {
-                if (canMove(board, position)) {
-                    int[] newBoard = makeMove(board, position);
-                    if (solvable(newBoard)) {
-                        printBoard(newBoard);
-                        return true;
+     <font size="4" color="maroon">
+        <pre>
+            boolean solvable(int[] board) {
+                if (puzzleSolved(board)) {
+                    return true;
+                }
+                for (int position = 0; position < BOARD_SIZE; position++) {
+                    if (canMove(board, position)) {
+                        int[] newBoard = makeMove(board, position);
+                        if (solvable(newBoard)) {
+                            printBoard(newBoard);
+                            return true;
+                        }
                     }
                 }
+                return false;
             }
-            return false;
-        }
-     </pre>
+         </pre>
+     </font>
+     
 
-     <p>Along with canMove and makeMove, we are using methods puzzleSolved And printBoard with meanings that should be obvious.</p>
+     <p>Along with <font size="4" color="maroon">canMove</font>  and <font size="4" color="maroon">makeMove</font> , we are using methods <font size="4" color="maroon">puzzleSolved</font>  And <font size="4" color="maroon">printBoard</font>  with meanings that should be obvious.</p>
      <p>Here is some output from the program:</p>
-     <pre>
-        16.  WHITE  WHITE  WHITE  _____  BLACK  BLACK  BLACK
-        15.  WHITE  WHITE  WHITE  BLACK  _____  BLACK  BLACK
-        14.  WHITE  WHITE  _____  BLACK  WHITE  BLACK  BLACK
-        13.  WHITE  _____  WHITE  BLACK  WHITE  BLACK  BLACK
-        12.  WHITE  BLACK  WHITE  _____  WHITE  BLACK  BLACK
-        11.  WHITE  BLACK  WHITE  BLACK  WHITE  _____  BLACK
-        10. WHITE  BLACK  WHITE  BLACK  WHITE  BLACK  _____
-         9.  WHITE  BLACK  WHITE  BLACK  _____  BLACK  WHITE
-         8.  WHITE  BLACK  _____  BLACK  WHITE  BLACK  WHITE
-         7.  _____  BLACK  WHITE  BLACK  WHITE  BLACK  WHITE
-         6.  BLACK  _____  WHITE  BLACK  WHITE  BLACK  WHITE
-         5.  BLACK  BLACK  WHITE  _____  WHITE  BLACK  WHITE
-         4.  BLACK  BLACK  WHITE  BLACK  WHITE  _____  WHITE
-         3.  BLACK  BLACK  WHITE  BLACK  _____  WHITE  WHITE
-         2.  BLACK  BLACK  _____  BLACK  WHITE  WHITE  WHITE
-         1.  BLACK  BLACK  BLACK  _____  WHITE  WHITE  WHITE
-     </pre>
+        <font size="4">
+            <b>
+                <pre>
+                
+                     <font color="blue"> 16.</font>  WHITE  WHITE  WHITE  _____  BLACK  BLACK  BLACK
+                     <font color="blue"> 15.</font>  WHITE  WHITE  WHITE  BLACK  _____  BLACK  BLACK
+                     <font color="blue"> 14.</font>  WHITE  WHITE  _____  BLACK  WHITE  BLACK  BLACK
+                     <font color="blue"> 13.</font>  WHITE  _____  WHITE  BLACK  WHITE  BLACK  BLACK
+                     <font color="blue"> 12.</font>  WHITE  BLACK  WHITE  _____  WHITE  BLACK  BLACK
+                     <font color="blue"> 11.</font>  WHITE  BLACK  WHITE  BLACK  WHITE  _____  BLACK
+                     <font color="blue"> 10.</font>  WHITE  BLACK  WHITE  BLACK  WHITE  BLACK  _____
+                     <font color="blue"> 9.</font>   WHITE  BLACK  WHITE  BLACK  _____  BLACK  WHITE
+                     <font color="blue"> 8.</font>   WHITE  BLACK  _____  BLACK  WHITE  BLACK  WHITE
+                     <font color="blue"> 7.</font>   _____  BLACK  WHITE  BLACK  WHITE  BLACK  WHITE
+                     <font color="blue"> 6.</font>   BLACK  _____  WHITE  BLACK  WHITE  BLACK  WHITE
+                     <font color="blue"> 5.</font>   BLACK  BLACK  WHITE  _____  WHITE  BLACK  WHITE
+                     <font color="blue"> 4.</font>   BLACK  BLACK  WHITE  BLACK  WHITE  _____  WHITE
+                     <font color="blue"> 3.</font>   BLACK  BLACK  WHITE  BLACK  _____  WHITE  WHITE
+                     <font color="blue"> 2.</font>   BLACK  BLACK  _____  BLACK  WHITE  WHITE  WHITE
+                     <font color="blue"> 1.</font>   BLACK  BLACK  BLACK  _____  WHITE  WHITE  WHITE
+                 </pre>
+             </b>
+         </font>
      <p>Notice that the solution is given in reverse order: BLACK starts out on the left and WHITE on the right, as in the last line. I've added line numbers to the actual output in order to emphasize this point. Backtracking always produces its results (sequence of choices) in reverse order; it is up to you, the programmer, to reverse the results again to get them in the correct order.</p>
         
         
